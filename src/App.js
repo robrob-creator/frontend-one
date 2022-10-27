@@ -9,6 +9,12 @@ const appName = () => {
 };
 
 function ChatLogItem({ chatDetails }) {
+  const bottomRef = useRef(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chatDetails]);
+
   return (
     <div
       className={
@@ -17,12 +23,14 @@ function ChatLogItem({ chatDetails }) {
           : "chat-log_item chat-log_item"
       }
     >
-      <div className="row justify-content-end mx-1 d-flex">
+      <div className="row">
         <span className="chat-log_author">{chatDetails.user}</span>
       </div>
       <div className="chat-log_message">
         <p>{chatDetails.message}</p>
       </div>
+      <div className="chat-log_time"></div>
+      <div ref={bottomRef} />
     </div>
   );
 }
@@ -109,7 +117,7 @@ function App() {
                 value={inputMsg}
                 onChange={(e) => setInputMsg(e.target.value)}
                 onKeyPress={(e) => {
-                  if (e.key === "Enter") {
+                  if (e.key === "Enter" && inputMsg) {
                     sendMessage({ user: appName(), message: inputMsg });
                     setInputMsg("");
                   }
@@ -117,11 +125,21 @@ function App() {
               />
               <button
                 className="send-box-button"
+                disabled={!inputMsg ? true : false}
                 onClick={() =>
                   sendMessage({ user: appName(), message: inputMsg })
                 }
               >
-                <span className="send-box-span">Send</span>{" "}
+                <span
+                  className="send-box-span"
+                  style={
+                    inputMsg
+                      ? { backgroundColor: "rgb(56, 91, 196)" }
+                      : { backgroundColor: "grey" }
+                  }
+                >
+                  Send
+                </span>{" "}
               </button>
             </div>
           </div>

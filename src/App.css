@@ -13,7 +13,6 @@
   display: table;
   clear: both;
 }
-/* Create two equal columns that floats next to each other */
 .column {
   display: flex;
   flex-direction: column;
@@ -105,7 +104,6 @@
   -moz-border-radius-bottomright: 25px;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
-
   border: none;
   cursor: pointer;
   cursor: hand;
@@ -117,7 +115,6 @@
   text-transform: uppercase;
   font-weight: 300;
   color: #fff;
-  background-color: rgb(56, 91, 196);
   border-radius: 20px;
   box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.19);
 }
