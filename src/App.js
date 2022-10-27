@@ -12,7 +12,7 @@ function ChatLogItem({ chatDetails }) {
   return (
     <div
       className={
-        chatDetails?.messageType === appName()
+        chatDetails?.user === appName()
           ? "chat-log_item chat-log_item"
           : "chat-log_item chat-log_item-own"
       }
