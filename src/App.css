@@ -132,19 +132,19 @@
   background-color: #393939;
 }
 .msgcard {
-  box-shadow: 0 0px 25px rgba(0, 0, 0, 0.2);
   color: rgb(43, 44, 43);
   border-radius: 10px;
 }
 
 .chat-log {
+  background: #e9e9ea;
   overflow-y: scroll;
   height: 450px;
   padding: 20px;
 }
 
 .chat-log_item {
-  background: #eaeaea;
+  background: #fffefe;
   padding: 10px;
   margin: 0 auto 10px;
   max-width: 90%;

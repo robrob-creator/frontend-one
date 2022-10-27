@@ -89,8 +89,8 @@ function App() {
 
     if (connection._connectionStarted) {
       try {
-        let res = await connection.send("SendMessage", chatMessage);
-        console.log(res);
+        await connection.send("SendMessage", chatMessage);
+        setInputMsg("");
       } catch (e) {
         console.log(e);
       }
@@ -119,7 +119,6 @@ function App() {
                 onKeyPress={(e) => {
                   if (e.key === "Enter" && inputMsg) {
                     sendMessage({ user: appName(), message: inputMsg });
-                    setInputMsg("");
                   }
                 }}
               />
