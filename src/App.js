@@ -13,8 +13,8 @@ function ChatLogItem({ chatDetails }) {
     <div
       className={
         chatDetails?.user === appName()
-          ? "chat-log_item chat-log_item"
-          : "chat-log_item chat-log_item-own"
+          ? "chat-log_item chat-log_item-own"
+          : "chat-log_item chat-log_item"
       }
     >
       <div className="row justify-content-end mx-1 d-flex">
