@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { HubConnectionBuilder } from "@microsoft/signalr";
 
 const appName = () => {
-  return "Application 1";
+  return "Application ";
 };
 
 function ChatLogItem({ chatDetails }) {
