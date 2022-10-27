@@ -43,7 +43,6 @@ function MessageBox({ data }) {
   );
 }
 function App() {
-  const [msg, setMsg] = useState();
   const [inputMsg, setInputMsg] = useState();
   const [connection, setConnection] = useState(null);
   const [chat, setChat] = useState([]);
@@ -55,16 +54,14 @@ function App() {
       .withUrl("https://localhost:5001/hubs/chat")
       .withAutomaticReconnect()
       .build();
-
     setConnection(newConnection);
   }, []);
+
   useEffect(() => {
     if (connection) {
       connection
         .start()
         .then((result) => {
-          console.log("Connected!");
-
           connection.on("ReceiveMessage", (message) => {
             const updatedChat = [...latestChat.current];
             updatedChat.push(message);
@@ -75,6 +72,7 @@ function App() {
         .catch((e) => console.log("Connection failed: ", e));
     }
   }, [connection]);
+
   const sendMessage = async ({ user, message }) => {
     const chatMessage = {
       user: user,
@@ -92,6 +90,7 @@ function App() {
       alert("No connection to server yet.");
     }
   };
+
   return (
     <div className="App">
       <div class="row">
@@ -102,13 +101,19 @@ function App() {
               Welcome to ISA<span className="App-welcome-span">AC</span>
             </header>
             <p className="app-identifier">{appName()}</p>
-            {/*  <div className="message-box">Message: {msg}</div>*/}
             <div className="send-box">
               <input
                 type="text"
                 className="send-box-input"
                 placeholder="Send something..."
+                value={inputMsg}
                 onChange={(e) => setInputMsg(e.target.value)}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    sendMessage({ user: appName(), message: inputMsg });
+                    setInputMsg("");
+                  }
+                }}
               />
               <button
                 className="send-box-button"
