@@ -4,11 +4,15 @@ import { useRef, useState } from "react";
 import { useEffect } from "react";
 import { HubConnectionBuilder } from "@microsoft/signalr";
 
+const appName = () => {
+  return "Application 1";
+};
+
 function ChatLogItem({ chatDetails }) {
   return (
     <div
       className={
-        chatDetails?.messageType === "own"
+        chatDetails?.messageType === appName()
           ? "chat-log_item chat-log_item"
           : "chat-log_item chat-log_item-own"
       }
@@ -44,7 +48,6 @@ function App() {
   const [connection, setConnection] = useState(null);
   const [chat, setChat] = useState([]);
   const latestChat = useRef(null);
-
   latestChat.current = chat;
 
   useEffect(() => {
@@ -98,7 +101,7 @@ function App() {
             <header className="App-welcome">
               Welcome to ISA<span className="App-welcome-span">AC</span>
             </header>
-            <p className="app-identifier">Application 1</p>
+            <p className="app-identifier">{appName()}</p>
             {/*  <div className="message-box">Message: {msg}</div>*/}
             <div className="send-box">
               <input
@@ -110,7 +113,7 @@ function App() {
               <button
                 className="send-box-button"
                 onClick={() =>
-                  sendMessage({ user: "Application 1", message: inputMsg })
+                  sendMessage({ user: appName(), message: inputMsg })
                 }
               >
                 <span className="send-box-span">Send</span>{" "}
